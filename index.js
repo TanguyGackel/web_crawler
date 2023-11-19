@@ -9,10 +9,12 @@ async function main(){
     const root = normalizeURL(argv[2]);
 
     console.log("Crawler starting at : " + root);
-    const pages = await crawlPage(root, root, [])
+    const pages = await crawlPage(root, root, []);
+
+    pages.sort();
 
     for (const url in pages) {
-        console.log(pages[url].key + " : " + pages[url].value)
+        console.log(pages[url].key + " was found " + pages[url].value +  " times;");
     }
 }
 
