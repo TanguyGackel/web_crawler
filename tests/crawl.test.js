@@ -31,3 +31,7 @@ test('get new Urls', () => {
 
     expect(received).toEqual(expected)
 })
+
+test('extract domain name', () =>{
+    expect(crawl.extractDomain('https://www.wagslane.dev/')).toBe("wagslane.dev");
+})

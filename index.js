@@ -1,13 +1,19 @@
 const { argv } = require('process');
-const { crawlPage } = require('./crawl')
+const { crawlPage, normalizeURL} = require('./crawl')
 
-function main(){
+async function main(){
     if(argv.length < 3 || argv.length > 3){
         console.log("ERROR : not the right amount of arguments")
         return;
     }
-    console.log("Crawler starting at : " + argv[2])
-    crawlPage(argv[2])
+    const root = normalizeURL(argv[2]);
+
+    console.log("Crawler starting at : " + root);
+    const pages = await crawlPage(root, root, [])
+
+    for (const url in pages) {
+        console.log(pages[url].key + " : " + pages[url].value)
+    }
 }
 
 main()
